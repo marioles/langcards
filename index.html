@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Langcards</title>
+  <meta name="description" content="Tarjetas para practicar caracteres chinos">
+  <meta name="theme-color" content="#f7f4ee" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#151515" media="(prefers-color-scheme: dark)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Langcards">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Apply saved theme before paint to avoid a flash.
+    try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+</head>
+<body>
+  <header class="bar">
+    <button id="levelsBtn" class="ghost" aria-label="Elegir niveles">Niveles</button>
+    <span id="counter" class="muted"></span>
+    <button id="themeBtn" class="ghost icon" aria-label="Cambiar tema">◐</button>
+  </header>
+
+  <main id="card" class="card" aria-live="polite">
+    <div id="hanzi" class="hanzi"></div>
+    <div id="strokes" class="strokes" hidden></div>
+    <div id="pinyin" class="pinyin reveal"></div>
+    <div id="meaning" class="meaning reveal"></div>
+    <div id="kind" class="kind reveal muted"></div>
+    <p id="hint" class="hint muted">Toca para ver el pinyin</p>
+  </main>
+
+  <footer class="bar actions">
+    <button id="speakBtn" class="ghost icon" aria-label="Escuchar pronunciación">🔊</button>
+    <button id="strokeBtn" class="ghost icon" aria-label="Ver orden de trazos">笔</button>
+    <button id="nextBtn" class="primary">Siguiente →</button>
+  </footer>
+
+  <dialog id="levelsDlg">
+    <form method="dialog">
+      <h2>Niveles</h2>
+      <div id="levelList" class="levels"></div>
+      <div class="row">
+        <button type="button" id="allBtn" class="ghost">Todos</button>
+        <button type="button" id="noneBtn" class="ghost">Ninguno</button>
+        <button id="doneBtn" class="primary" value="ok">Listo</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="vendor/hanzi-writer.min.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
